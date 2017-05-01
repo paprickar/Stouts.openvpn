@@ -2,6 +2,7 @@
 
 - name: openvpn restart
   service: name={{openvpn_service}} state=restarted
+  become: yes
 
 - name: openvpn pack clients
   command: zip -j {{item.item}}.zip {{item.item}}.crt {{item.item}}.key {{item.item}}.ovpn ca.crt {{openvpn_tls_key if openvpn_tls_auth else ''}}
